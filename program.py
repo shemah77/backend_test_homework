@@ -1,50 +1,17 @@
-print('Я домашка')
+def calculate_sum_and_average(numbers):
+    total_sum = 0
+    for num in numbers:
+        total_sum += num
 
-courses = {
-    'Python-разработчик': {
-        'Стек': {
-            'Python',
-            'Django',
-            'GitHub',
-            'SQL',
-            'PostgreSQL',
-            'Bash',
-            'Nginx',
-            'Gunicorn',
-            'Docker',
-            'Docker Hub'
-        },
-        'Продолжительность': '9 месяцев'
-    },
-    'Python-разработчик плюс': {
-        'Стек': {
-            'Python',
-            'Django',
-            'GitHub',
-            'SQL',
-            'PostgreSQL',
-            'Bash',
-            'Nginx',
-            'Gunicorn',
-            'Docker',
-            'Docker Hub',
-            'Flask',
-            'FastAPI',
-            'Scrapy',
-            'Selenium',
-            'SQLAlchemy'
-        },
-        'Продолжительность': '14 месяцев'
-    }
-}
+    average = total_sum // len(numbers)
+    return total_sum, average
 
-diff = set.difference(
-    courses['Python-разработчик плюс']['Стек'],
-    courses['Python-разработчик']['Стек']
-)
-courses_diff = str.join(', ', diff)
+numbers = [10, 20, 30, 40, 50]
+total, avg = calculate_sum_and_average(numbers)
+print(f'Сумма чисел: {total}')
+print(f'Среднее значение: {avg}')
 
-print(
-    'Отличия стеков в курсах «Python-разработчик плюс» и '
-    f'«Python-разработчик»: {courses_diff}'
-)
+numbers = [11, 22, 33, 42, 51]
+total, avg = calculate_sum_and_average(numbers)
+print(f'Сумма чисел: {total}')
+print(f'Среднее значение: {avg}')
