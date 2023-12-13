@@ -23,5 +23,4 @@ xa: int = 10
 ya: int = 5
 
 print('Сумма чисел: ', add_numbers(xa, ya))
-
 print(calc(25.5))
