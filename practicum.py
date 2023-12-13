@@ -1,25 +1,27 @@
-# Аннотируем параметр функции: "значение name должно быть типа str!"
-from math import *
-
-def add_numbers(x, y):
-    return x + y
+from math import sqrt
+from typing import Optional
 
 
-def  CalculateSquareRoot (Number:str ):
-     return  sqrt(Number)
-
-def calc(your_number) :
-    if your_number<=0:
-        return    
-     
-    root = 0
-    return f"Мы вычислили квадратный корень из введённого вами числа. Это будет: {CalculateSquareRoot(your_number)}"
+def add_numbers(xa: int, ya: int) -> int:
+    return xa + ya
 
 
+def calculate_square_root(number: float) -> float:
+    return sqrt(number)
 
-x = 10
-y = 5
 
-print('Сумма чисел: ', add_numbers(x, y))
+def calc(your_number: float) -> Optional[str]:
+    if your_number >= 0:
+        root = calculate_square_root(your_number)
+        return (
+            f'Мы вычислили квадратный корень из введённого вами числа. '
+            f'Это будет: {root}'
+        )
 
-print(calc (25.5))
+
+xa: int = 10
+ya: int = 5
+
+print('Сумма чисел: ', add_numbers(xa, ya))
+
+print(calc(25.5))
