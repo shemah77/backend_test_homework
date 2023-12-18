@@ -6,6 +6,17 @@ class Employee:
         self.gender = gender
         self.first_name = first_name
         self.second_name = second_name
+        self.remaining_vacation_days = Employee.vacation_days
+
+
+    def consume_vacation(self, consumed_days:int):
+        self.remaining_vacation_days -= consumed_days
+
+    def get_vacation_details(self):
+        return f'Остаток отпускных дней: {self.remaining_vacation_days}'
+
+
+
 
     pass
 
@@ -26,6 +37,7 @@ print(f' Имя: {employee2.first_name},'
       f' Пол: {employee2.gender}, '
       f'Отпускных дней в году: {employee2.vacation_days}.')
 
-
+employee1.consume_vacation(7)
+print (employee1.get_vacation_details())
 
 
