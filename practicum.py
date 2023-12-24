@@ -6,6 +6,11 @@ class Employee:
         self.second_name = second_name
         self.gender = gender
         self.remaining_vacation_days = self.vacation_days
+        self._employee_id = self.__generate_employee_id()
+
+    def __generate_employee_id(self):
+        self._employee_id = hash(self.first_name + self.second_name + self.gender)
+        return self._employee_id
 
     def consume_vacation(self, days):
         self.remaining_vacation_days -= days
@@ -21,9 +26,15 @@ class FullTimeEmployee(Employee):
                 f'продолжительность: {unpaid_days} дней.'
                 )
 
-    def __init__(self, first_name, second_name, gender):
+    def __init__(self, first_name, second_name, gender, __salary):
         self.remaining_vacation_days = FullTimeEmployee.vacation_days
+        self.__salary = __salary
         super().__init__(first_name, second_name, gender)
+
+    def __get_vacation_salary(self):
+        return self.__salary*0.8
+
+
 
 
 class PartTimeEmployee(Employee):
@@ -38,8 +49,8 @@ class PartTimeEmployee(Employee):
 
 
 # Создайте экземпляры класса Employee с различными значениями атрибутов.
-employee1 = Employee(gender='м', first_name='Rob', second_name='Cruso')
-employee2 = Employee(gender='ж', first_name='Ira', second_name='Crusovkina')
+# employee1 = Employee(gender='м', first_name='Rob', second_name='Cruso')
+# employee2 = Employee(gender='ж', first_name='Ira', second_name='Crusovkina')
 
 
 
@@ -58,9 +69,9 @@ employee2 = Employee(gender='ж', first_name='Ira', second_name='Crusovkina')
 # print (employee1.get_vacation_details())
 
 # Пример использования:
-full_time_employee = FullTimeEmployee('Роберт', 'Крузо', 'м')
-print(full_time_employee.get_unpaid_vacation('2023-07-01', 5))
-part_time_employee = PartTimeEmployee('Алёна', 'Пятницкая', 'ж')
+# full_time_employee = FullTimeEmployee('Роберт', 'Крузо', 'м')
+# print(full_time_employee.get_unpaid_vacation('2023-07-01', 5))
+# part_time_employee = PartTimeEmployee('Алёна', 'Пятницкая', 'ж')
 
 
 # print(part_time_employee.vacation_days)
@@ -68,4 +79,17 @@ part_time_employee = PartTimeEmployee('Алёна', 'Пятницкая', 'ж')
 # print(full_time_employee.vacation_days)
 
 
+# print(part_time_employee.get_vacation_details())
+
+# Пример использования:
+full_time_employee = FullTimeEmployee('Иван', 'Иванов', 'м', 50000)
+print(full_time_employee.get_unpaid_vacation('2023-07-01', 5))
+
+part_time_employee = PartTimeEmployee('Анна', 'Петрова', 'ж')
+part_time_employee.consume_vacation(5)
 print(part_time_employee.get_vacation_details())
+
+print(part_time_employee._employee_id)
+print(part_time_employee)
+
+print(full_time_employee._employee_id)
