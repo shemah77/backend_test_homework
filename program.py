@@ -1,40 +1,21 @@
-class Phone:
-    # Атрибут класса.
-    line_type = 'проводной'
+# Список для тестирования.
 
-    def __init__(self, dial_type_value):
-        # Атрибут объекта.
-        self.dial_type = dial_type_value
+def MyRange (numbers):
+    Sum = 0
+    for i in range (0, len(numbers)):
+        if numbers[i] % 3 == 0:
+            yield numbers[i]**2
 
 
-# Создать объект класса Phone.
-rotary_phone = Phone(dial_type_value='дисковый')
-keypad_phone = Phone(dial_type_value='кнопочный')
+numbers = [1, 3, 4, 6, 9, 11]
 
-# Распечатать значение атрибута класса.
-print(f'Тип линии: {rotary_phone.line_type}')
-print(f'Тип линии: {keypad_phone.line_type}')
+# Здесь напишите ваше генераторное выражение.
+simple_generator = (digit for digit in MyRange(numbers))
 
-# Поменять значение атрибута line_type для объекта rotary_phone.
-rotary_phone.line_type = 'радио'
+# Распечатайте сумму квадратов.
+print (sum (simple_generator))
 
-# Снова распечатать значения.
-print(f'Тип линии: {rotary_phone.line_type}')
-print(f'Тип линии: {keypad_phone.line_type}')
 
-# Поменять значение атрибута класса через класс.
-Phone.line_type = 'спутниковый'
 
-# Снова распечатать значения.
-print(f'Тип линии: {rotary_phone.line_type}')
-print(f'Тип линии: {keypad_phone.line_type}')
 
-# Выведется:
-# Тип линии: проводной
-# Тип линии: проводной
-# Тип линии: радио
-# Тип линии: проводной
-# Тип линии: радио
-# Тип линии: спутниковый
-print (dir(Phone))
 
