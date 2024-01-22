@@ -1,31 +1,35 @@
+import hashlib
+example_array = [6, 5, 1, 3, 8, 7, 2, 4]
 
-# Будет напечатано: 14
+def bubble_sort(data):
+    last_index = len(data) - 1
+    while last_index >= 0:
+        swapped = False
+        for item_index in range(last_index):
+            if data[item_index] > data[item_index+1]:
+                data[item_index], data[item_index+1] = (
+                    data[item_index +1], data[item_index]
+                )
+                swapped = True
+        if swapped == True:
+            last_index -= 1
+        else: return data
 
-people = ['Антон', 'Соня', 'Коля', 'Женя', 'Тоня', 'Стёпа']
-
-
-def say_to_all(func: object, sequence: object) -> object:
-    for item in sequence:
-        func(item)
-
-
-# Этот вызов для каждого имени из списка должен напечатать
-# строчку Привет, <имя>!
-say_to_all(
-            lambda people: print (f'Hi {people}')
-            if people  == 'Соня' else print (f'Hello {people}'), people
-           )
-
-
-# print (f'Hi {people}') if people  == 'Соня' else print (f'Hello {people}')
-
+    # Напишите здесь код сортировки.
+    return data
 
 
 
 
+a ='https://tsup.ru/mars/marsohod-1/01-09-2023/daily_job.html'
+hash_md5 = hashlib.new('md5')
+a = a.encode('utf-8')
+print (a)
+
+hash_md5.update(a)
+# print (hash_md5)
+print(hash_md5.hexdigest())
 
 
-
-# Этот вызов для каждого имени из списка должен напечатать
-# строчку До завтра, <имя>!
-# say_to_all(...)
+# a = hashlib.sha256('https://tsup.ru/mars/marsohod-1/01-09-2023/daily_job.html')
+# print (a)
