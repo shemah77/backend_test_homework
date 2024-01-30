@@ -12,7 +12,7 @@ def decode_instructions(instructions: str) -> str:
     num1: int = 0
     while i < len(instructions):
         if instructions[i] in DIGIT:
-            # num = DIGIT.index(instructions[i])
+
             while i < len(instructions) and instructions[i].isdigit():
                 num1 = num1 * 10 + int(instructions[i])
                 i += 1
@@ -44,13 +44,8 @@ def decode_instructions(instructions: str) -> str:
     return ''.join(stack)
 
 
-
-
 def main ():
     cypher_str = str(input())
-    # a_level = parse(cypher_str)
-    b_level = []
-    # print(a_level)
     res: str
     res = decode_instructions(cypher_str)
     print(res)
