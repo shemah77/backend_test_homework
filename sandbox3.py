@@ -43,4 +43,4 @@ if __name__ == '__main__':
     # Создаём большую коробку, в неё вкладываем две средние:
     large_box = Box(size='L', inner_items=[middle_box_empty, middle_box_full])
     # Отправляем большую коробку в функцию-разбиратель:
-    disassemble_boxes(large_box)
+    disassemble_boxes(laarge_box)
