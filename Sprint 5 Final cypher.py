@@ -87,6 +87,7 @@ def parse(expr):
 
 # =========== польская обратная нотация =========
 
+# НАЧАЛО ЭКСПОРТА =======
 
 globals()
 DIGIT = '0123456789'
@@ -104,7 +105,8 @@ def decode_instructions(instructions: str) -> str:
     i: int = 0
     while i < len(instructions):
         if instructions[i] in DIGIT:
-            num = DIGIT.index(instructions[i])
+            # num = DIGIT.index(instructions[i])
+            num = num * 10 + int(instructions[i])
             i += 1
             stack.append(str(num))
 
@@ -113,9 +115,9 @@ def decode_instructions(instructions: str) -> str:
             fin = ''
 
             while stack and stack[-1] != '[':
-                print (stack[-1])
+                # print (stack[-1])
                 if stack[-1].isalpha():
-                    symb  = stack.pop()+ symb
+                    symb  = stack.pop() + symb
 
             stack.pop()
 
@@ -132,26 +134,8 @@ def decode_instructions(instructions: str) -> str:
             i += 1
 
     # return ''.join(stack)
-    return stack
+    return ''.join(stack)
 
-# не рабоатет
-def decode (string:str)-> str:
-    result = ''
-    i = 0
-    while i < len(string):
-        if string[i].isalpha():
-            result += string[i]
-            i += 1
-        elif string[i].isdigit():
-            count = int(string[i])
-            substring = ''
-            i +=2
-            while string[i] != ']':
-                substring += string[i]
-                i += 1
-            result += count * substring
-            i += 1
-    return result
 
 
 
