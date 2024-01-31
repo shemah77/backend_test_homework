@@ -1,10 +1,13 @@
 
+# Яндекс контест № задачи 106243150
 
-# НАЧАЛО ЭКСПОРТА =======
+# DIGIT = '0123456789'
+# CHAR = 'abcdifghijklmnopqrstuvwxyz'
+import string
 
-globals()
-DIGIT = '0123456789'
-CHAR = 'abcdifghijklmnopqrstuvwxyz'
+DIGIT = string.digits
+CHAR = string.ascii_letters
+
 
 def decode_instructions(instructions: str) -> str:
     stack: list = []
