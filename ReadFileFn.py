@@ -6,7 +6,6 @@ from datetime import datetime as dt
 from chardet.universaldetector import UniversalDetector
 
 
-
 def chardetection():
     detector = UniversalDetector()
     with open('output.csv', 'rb') as fh:
@@ -95,35 +94,5 @@ if __name__ == '__main__':
     print (f'с даты активации прошло {dt.now() - file_date}')
     print (active_fn_count(lines))
     print (chardetection())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
