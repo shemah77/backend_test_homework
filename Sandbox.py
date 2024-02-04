@@ -1,10 +1,10 @@
 
+import datetime as dt
 
-a = 'abcdefghijklmnop'
-b = a.find('bc')
-c = '123'
-print (b)
+i = input('Enter date',)
 
-d = a.replace('bc', c)
+
+d = dt.datetime.strptime(i,'%d-%m-%Y')
 
 print (d)
+
