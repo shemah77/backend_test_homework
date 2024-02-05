@@ -1,6 +1,8 @@
 
 import csv
 
+import os
+
 from datetime import datetime as dt
 
 from chardet.universaldetector import UniversalDetector
@@ -22,8 +24,15 @@ def chardetection():
 def readfileFn():
     '''Read csv file and return it as a lines list of Dict, where first line is dict fields '''
     lines = []
-    file_date = input("Enter the date of file output.csv\n")
+    file_date = input("Введите дату производства файл  output.csv\n")
     file_date = dt.strptime(file_date, '%d-%m-%Y')
+    # file_output_date = datetime
+
+    filename = "output.csv"
+    mtime = os.path.getmtime(filename)
+    mtime_readable = dt.fromtimestamp(mtime)
+
+
 
     with open('output.csv', encoding='windows-1251', newline='') as csvfile:
         # line = csv.reader(csvfile, delimiter=';')
@@ -33,7 +42,7 @@ def readfileFn():
         #     lines.append(row)
 
         lines_of_dict = list(dic_lines)
-    return file_date, lines_of_dict
+    return file_date, mtime_readable,  lines_of_dict
 
 def input_data():
     '''input data from file'''
@@ -83,16 +92,29 @@ def active_fn_count(lines):
         elif i['in_active'] == '1':
             count_non += 1
         total +=  1
-    return f' активировались  {count},  доля {round(count/total*100,0)} %  не активных {count_non}, всего: {total}'
+    return (f' активировались  {count},  доля {round(count/total*100,0)} %  '
+            f'не активных {count_non}, всего: {total}')
+
+def save_result(result):
+    # Если нужно явно указать кодировку, добавьте параметр encoding='utf-8'.
+    with open('results_fn.txt', 'a') as f:
+        f.write(result + '\n' + '=========')
 
 
 if __name__ == '__main__':
     # line = input_data()
-    file_date, lines = readfileFn()
+    file_poduction_date, file_change_date, lines = readfileFn()
     count: int = 0
     # print (lines)
-    print (f'с даты активации прошло {dt.now() - file_date}')
-    print (active_fn_count(lines))
-    print (chardetection())
+    # print (f'с даты производства прошло {dt.now() - file_date}')
+
+    d = f' Проверка на {file_change_date}'
+    a = str (f'с даты производства прошло {dt.now() - file_poduction_date}')
+    b = str (active_fn_count(lines))
+    c = str (chardetection())
+    result = f' {d} \n Дата производства {str(file_poduction_date)} \n  {a}  \n {b} \n {c}'
+
+    save_result(result)
+
 
 
