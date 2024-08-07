@@ -1,0 +1,58 @@
+{
+    "log":{
+    "access": "/var/log/xray/access.log",
+    "error": "/var/log/xray/error.log",
+    "loglevel": "debug"
+  },
+
+"routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:ru"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
+
+
+
+  "inbounds": [
+    {
+      "port": 10086, // The port on which the server is listening
+      "protocol": "vmess",
+      "settings": {
+        "clients":[
+          {
+            "id": "da2ca0af-7e47-48a1-8aa7-0da9a11bcc02"
+          }
+        ]
+      }
+    }
+
+
+
+
+
+
+
+
+ ],
+
+
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    },
+
+    {
+      "protocol": "blackhole",
+      "tag": "block"
+    }
+
+
+  ]
+}
